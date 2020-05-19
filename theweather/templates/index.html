@@ -1,9 +1,27 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>First Page</title>
-    </head>
-    <body>
-        <h2>This is the first page of this project</h2>
-    </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>What's the weather like?</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" />
+</head>
+<body>
+    <h2>TEST</h2>
+    {% for city in weather_data %}
+        <div class="contaner" style="border: 1px solid black">
+            <div class="row">
+                <div class="col">
+                    <p>City: {{city.city}}</p>
+                    <p>temperature: {{city.temperature}}</p>
+                    <p>feels_like: {{city.feels_like}}</p>
+                    <p>description: {{city.description}}</p>
+                    <img src="http://openweathermap.org/img/w/{{ city.icon }}.png" alt="Image">
+                </div>
+                
+            </div>
+        </div>
+    {% endfor %}
+</body>
 </html>
