@@ -1,17 +1,6 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>What's the weather like?</title>
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" /> -->
-    <link href="{% static 'bootstrap-4.4.1-dist/css/bootstrap.css' %}" rel="stylesheet">
-    <link href="{% static 'css/base.css' %}" rel="stylesheet">
-</head>
-<body>
-    <h2>TEST</h2>
+{% extends 'base.html' %}
+
+{% block content %}
     <div class="container">
         <div class="row">
             <div class="col">
@@ -85,5 +74,4 @@
                 <br>
             {% endfor %}
         </div>
-</body>
-</html>
+{% endblock content %}
