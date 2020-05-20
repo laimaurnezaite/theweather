@@ -1,0 +1,74 @@
+button {
+    margin: 1%;
+    width: 150px;
+}
+#headerContainer, #menuRow {
+    height:120px;
+}
+
+#headerBlock1, #headerBlock3 {
+    height:99%;
+    background-image: url(pizza.png); 
+}
+
+#headerRow, #menuContainer {
+    height:120px; 
+    border:1px solid black;
+}
+
+#menuButtonsColumn {
+    margin:auto;
+}
+
+#headerBlock2, #PasswordChangeButtonCol, #LogOutButtonCol, #LoginButtonCol, #SignUpButtonCol, #FooterCol1, #FooterCol2, #MainListCol {
+    text-align:center; 
+    margin:auto;
+}
+
+#PasswordChangeButton, #LoginPageForgotPasswordButton, #LoginPageLoginButton, #SignUpButton {
+    width: 100%;
+}
+
+#LoginPageContainer, #FooterContainer, #SignUpContainer  {
+    border: 1px solid black; 
+    margin:auto;
+}
+
+#LoginPageRow, #LoginPageForm {
+    justify-content:center;
+    text-align:center;
+    padding:2%;
+    
+} 
+#PasswordChangeFormButton, #PasswordResetFormButton, #PasswordResetConfirmButton {
+    margin-top: 1%;
+    width: 33%;
+}
+#PasswordResetFormContainer, #PasswordResetDoneContainer, #PasswordResetConfirmContainer, #PasswordResetCompleteContainer, #ApologyContainer, #PasswordChangeFormContainer, #PasswordChangeDoneContainer {
+    border: 1px solid black; 
+    text-align:center; 
+    padding:2%;
+}
+td, th, #ToppingsContainer, #CountContainer, #NeedToBeLoggedContainer, #MainListContainer {
+    border: 1px solid black !important;
+}
+.TableTotalSum, #ConfirmOrderTh {
+    text-align: end; 
+}
+#CountCol, #NeedToBeLoggedCol {
+    padding: 1.5%;
+}
+#MainListItemCol, #MainListItem {
+    text-align:center;
+    padding:1%;
+}
+a, a:hover  {
+    color: black;
+}
+#SignUpRow {
+    justify-content:center;
+}
+#SignUpForm {
+    padding:2%; 
+    width:50%;
+}

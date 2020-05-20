@@ -1,0 +1,62 @@
+body {
+    background-color: white;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 20% 79%;
+    background-color: white;
+    grid-column-gap: 10px;
+    font-weight: bold;
+  }
+.grid-item {
+    background-color: white;
+    border: 1px solid black;
+    /* color: #008C45; */
+    text-align: center;
+    height: auto;
+    font-size: 16px;
+}
+
+#logo {
+    font-size: 30px;
+}
+
+.menuitem {
+    padding:13px;
+    font-size: 17px;
+}
+
+/* a:link, a:visited {
+    text-decoration: none;
+    color:black;
+    color: #008C45;
+    font-weight: bold;
+    
+} */
+/* a:hover {
+    text-decoration: underline;
+} */
+.category{
+    color: black;
+}
+.item {
+    color: black;
+    font-weight: normal;
+}
+
+/* .table {
+    background-color: white;
+    border: 1px black solid;
+    width: 80%;
+    margin: auto;
+    text-align: center;
+} */
+
+#welcome {
+    color: black;
+}
+button {
+    margin: 1%;
+    width: 150px;
+}
