@@ -11,7 +11,6 @@
     <div class="container">
         <div class="row">
             <div class="col">
-
                 <form action="find/" method="GET">
                     <input type="text" id="cityName" name="cityName" required>
                     <input type="submit" value="Search">
@@ -19,21 +18,17 @@
             </div>
         </div>
     </div>
- 
-    {% for city in weather_data %}
         <div class="contaner" style="border: 1px solid black">
             <div class="row">
                 <div class="col">
-                    <p>City: <a href="{% url 'city_detail' city.id %}">{{city.city}} </a></p>
-                    <p>City ID: {{city.id}}</p>
-                    <p>temperature: {{city.temperature}}</p>
-                    <p>feels_like: {{city.feels_like}}</p>
-                    <p>description: {{city.description}}</p>
-                    <img src="http://openweathermap.org/img/w/{{ city.icon }}.png" alt="Image">
+                    <p>City: <a href="{% url 'city_detail' weather.id %}">{{weather.city}} </a></p>
+                    <p>City: {{weather.city}}</p>
+                    <p>temperature: {{weather.temperature}}</p>
+                    <p>description: {{weather.description}}</p>
+                    <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="Image">
                 </div>
                 
             </div>
         </div>
-    {% endfor %}
 </body>
 </html>

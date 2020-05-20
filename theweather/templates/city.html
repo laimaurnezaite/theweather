@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>What's the weather like?</title>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" /> -->
+    <link href="{% static 'bootstrap-4.4.1-dist/css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+</head>
+<body>
+    <h2>TEST</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <form action="find/" method="GET">
+                    <input type="text" id="cityName" name="cityName" required>
+                    <input type="submit" value="Search">
+                </form>
+            </div>
+        </div>
+    </div>
+        <div class="contaner" style="border: 1px solid black">
+            <div class="row">
+                <h3>Current weather</h3>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p>City: {{current_weather.city}}</p>
+                    <p>temperature: {{current_weather.temperature}}</p>
+                    <p>feels_like: {{current_weather.feels_like}}</p>
+                    <p>description: {{current_weather.description}}</p>
+                    <p>sunrise: {{current_weather.sunrise}}</p>
+                    <p>sunset: {{current_weather.sunset}}</p>
+                    <p>pressure: {{current_weather.pressure}}</p>
+                    <p>humidity: {{current_weather.humidity}}</p>
+                    <p>uvi: {{current_weather.uvi}}</p>
+                    <p>visibility: {{current_weather.visibility}}</p>
+                    <p>wind_speed: {{current_weather.wind_speed}}</p>
+                    <p>wind_deg: {{current_weather.wind_deg}}</p>
+                    <p>wind_speed: {{current_weather.wind_speed}}</p>
+                    <p>main: {{current_weather.main}}</p>
+
+                    <img src="http://openweathermap.org/img/w/{{ current_weather.icon }}.png" alt="Image">
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h3>FORECAST</h3>
+                </div>
+            </div>
+            {% for day in forecast %}
+                <div class="row" style="border:1px solid black">
+                    <!-- <p>day</p> -->
+                    <div class="col">
+                        <p></p>
+                        <p>sunrise: {{day.sunrise}}</p>
+                        <p>sunset: {{day.sunset}}</p>
+                        <p>temperature morn: {{day.temperature_morn}}</p>
+                        <p>temperature day: {{day.temperature_day}}</p>
+                        <p>temperature eve: {{day.temperature_eve}}</p>
+                        <p>temperature nigh: {{day.temperature_night}}</p>
+                        <p>temperature min: {{day.temperature_min}}</p>
+                        <p>temperature max: {{day.temperature_max}}</p>
+                        <p>feels_like morn: {{day.feels_like_morn}}</p>
+                        <p>feels_like day: {{day.feels_like_day}}</p>
+                        <p>feels_like eve: {{day.feels_like_eve}}</p>
+                        <p>feels_like night: {{day.feels_like_nught}}</p>
+                        <p>pressure: {{day.pressure}}</p>
+                        <p>humidity: {{day.humidity}}</p>
+                        <p>clouds: {{day.clouds}}</p>
+                        <p>uvi: {{day.uvi}}</p>
+                        <p>wind_speed: {{day.wind_speed}}</p>
+                        <p>wind_deg: {{day.wind_deg}}</p>
+                        <p>main: {{day.main}}</p>
+                        <p>description: {{day.description}}</p>
+                        <img src="http://openweathermap.org/img/w/{{ day.icon }}.png" alt="Image">
+                    </div>
+                </div>
+                <br>
+            {% endfor %}
+        </div>
+</body>
+</html>
