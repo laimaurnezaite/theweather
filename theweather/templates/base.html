@@ -14,10 +14,10 @@
         <div id="page-container"> 
             <div class="container" style="background-color: #3C8ABC; height:80px; padding:0px; margin:0px; max-width:100%;">
                 <div class="row" style="width: 70%; margin:auto;">
-                    <div class="col-3">
-                        <h4 style="font-family: 'M PLUS 1p';font-size: 45px; color:white; padding: 10px;"> <a id="logo" href="/">WEATHER</a></h4>
+                    <div class="col">
+                        <h4 style="font-family: 'M PLUS 1p';font-size: 45px; color:white; padding-top: 10px; letter-spacing: 13px" > <a id="logo" href="/">WEATHER</a></h4>
                     </div>
-                    <div class="col" style="padding-top:20px">
+                    <div class="col-8" style="padding-top:20px; padding-left:0px; padding-right:0px;">
                         <form action="{% url 'search' %}" method="GET">
                             <input style="width: 85%; height:35px;" type="text" id="cityName" placeholder="Enter a city" name="cityName" required>
                             <input type="submit" class="example_c" style="font-family: 'Times New Roman', Times, serif;"  value="SEARCH">
