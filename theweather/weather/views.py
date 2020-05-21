@@ -13,8 +13,8 @@ from .models import City
 
 def index(request):
     api_key = os.environ['API_KEY']
-    top_cities =["Vilnius", "Kaunas", "Klaipėda", "Šiauliai","Panevėžys"]
-    cities = City.objects.filter(name__in = top_cities)
+    top_cities =[593116, 598316, 598098, 594739,596128]
+    cities = City.objects.filter(geoname_id__in = top_cities)
     weather_data = []
     for city in cities:
         id = city.geoname_id
