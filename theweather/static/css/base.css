@@ -1,15 +1,7 @@
-.container {
-    border: 1px solid red;
-}
-/* a, a:hover  {
-    color: white;
-    text-decoration: none;
-} */
-#logo {
+a, a:hover  {
     color: white;
     text-decoration: none;
 }
-
 .example_c {
     color: #3C8ABC !important;
     /* text-transform: uppercase; */
@@ -23,19 +15,36 @@
 }
 
 .example_c:hover {
-    color: #ffffff !important;
-    background: #3C8ABC;
-    border-color: #ffffff !important;
-    transition: all 0.4s ease 0s;
+    /* color: #ffffff !important; */
+    /* background: #3C8ABC; */
+    letter-spacing: 3px;
+    /* border-color: #ffffff !important; */
+    /* transition: all 0.4s ease 0s; */
 }
 
+#example_2 {
 
+    /* font-size: 20px; */
+    /* padding: 20px; */
+    text-transform: uppercase;
+    transition: all 0.3s ease 0s;
+}
+#example_2:hover {
+    letter-spacing: 3px;
+    transition: all 0.3s ease 0s;
+}
 
+footer {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: 2.5rem;            /* Footer height */
+}
 
-
-
-
-
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
 
 
 
