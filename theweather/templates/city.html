@@ -2,67 +2,91 @@
 
 {% block content %}
     
-        <div class="contaner" style="border: 1px solid black">
-            <div class="row">
-                <h3>Current weather</h3>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <p>City: {{current_weather.city}}</p>
-                    <p>temperature: {{current_weather.temperature}}</p>
-                    <p>feels_like: {{current_weather.feels_like}}</p>
-                    <p>description: {{current_weather.description}}</p>
-                    <p>sunrise: {{current_weather.sunrise}}</p>
-                    <p>sunset: {{current_weather.sunset}}</p>
-                    <p>pressure: {{current_weather.pressure}}</p>
-                    <p>humidity: {{current_weather.humidity}}</p>
-                    <p>uvi: {{current_weather.uvi}}</p>
-                    <p>visibility: {{current_weather.visibility}}</p>
-                    <p>wind_speed: {{current_weather.wind_speed}}</p>
-                    <p>wind_deg: {{current_weather.wind_deg}}</p>
-                    <p>wind_speed: {{current_weather.wind_speed}}</p>
-                    <p>main: {{current_weather.main}}</p>
-
-                    <img src="http://openweathermap.org/img/w/{{ current_weather.icon }}.png" alt="Image">
-                </div>
+    <div class="container">
+        <div class="row">
+            <div class="col" style="margin-left:6%" >
+                <p style="font-family: 'M PLUS 1p'; color:#3C8ABC; font-size:40px; margin-top:5px;">{{current_weather.name}}</p>
             </div>
         </div>
-        <br>
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h3>FORECAST</h3>
-                </div>
-            </div>
-            {% for day in forecast %}
-                <div class="row" style="border:1px solid black">
-                    <!-- <p>day</p> -->
-                    <div class="col">
-                        <p></p>
-                        <p>sunrise: {{day.sunrise}}</p>
-                        <p>sunset: {{day.sunset}}</p>
-                        <p>temperature morn: {{day.temperature_morn}}</p>
-                        <p>temperature day: {{day.temperature_day}}</p>
-                        <p>temperature eve: {{day.temperature_eve}}</p>
-                        <p>temperature nigh: {{day.temperature_night}}</p>
-                        <p>temperature min: {{day.temperature_min}}</p>
-                        <p>temperature max: {{day.temperature_max}}</p>
-                        <p>feels_like morn: {{day.feels_like_morn}}</p>
-                        <p>feels_like day: {{day.feels_like_day}}</p>
-                        <p>feels_like eve: {{day.feels_like_eve}}</p>
-                        <p>feels_like night: {{day.feels_like_nught}}</p>
-                        <p>pressure: {{day.pressure}}</p>
-                        <p>humidity: {{day.humidity}}</p>
-                        <p>clouds: {{day.clouds}}</p>
-                        <p>uvi: {{day.uvi}}</p>
-                        <p>wind_speed: {{day.wind_speed}}</p>
-                        <p>wind_deg: {{day.wind_deg}}</p>
-                        <p>main: {{day.main}}</p>
-                        <p>description: {{day.description}}</p>
-                        <img src="http://openweathermap.org/img/w/{{ day.icon }}.png" alt="Image">
+    </div>
+    <div class="container" >
+        <div class="row">
+            <div class="col">
+                <p>Today</p>
+                <div class="row" style="width: 30%; margin-left:6%; border: 1px solid black;">
+                    <div class="col-2" style="padding:0px">
+                        <img src="http://openweathermap.org/img/w/{{ current_weather.icon }}.png" alt="Image">
+                    </div>
+                    <div class="col-2" style="padding:0px; margin:auto;">
+                        <p style="font-family: 'M PLUS 1p'; font-size:20px; margin:auto;">{{current_weather.temperature}}° </p>
+                    </div>
+                    <div class="col" style="border-left: 1px solid black; margin:auto;">
+                        <p style="font-family: 'M PLUS 1p'; font-size:16px; margin:auto;">{{current_weather.description}}</p>
                     </div>
                 </div>
-                <br>
-            {% endfor %}
+            </div>
         </div>
+    </div>
+
+    <!-- <div class="container" style="border: 1px solid black">
+        <div class="row">
+            <h3>Current weather</h3>
+        </div>
+        <div class="row">
+            <div class="col">
+                
+                <p>temperature: {{current_weather.temperature}}</p>
+                <p>feels_like: {{current_weather.feels_like}}</p>
+                <p>description: {{current_weather.description}}</p>
+                <p>sunrise: {{current_weather.sunrise}}</p>
+                <p>sunset: {{current_weather.sunset}}</p>
+                <p>pressure: {{current_weather.pressure}}</p>
+                <p>humidity: {{current_weather.humidity}}</p>
+                <p>uvi: {{current_weather.uvi}}</p>
+                <p>visibility: {{current_weather.visibility}}</p>
+                <p>wind_speed: {{current_weather.wind_speed}}</p>
+                <p>wind_deg: {{current_weather.wind_deg}}</p>
+                <p>wind_speed: {{current_weather.wind_speed}}</p>
+                <p>main: {{current_weather.main}}</p>
+
+                <img src="http://openweathermap.org/img/w/{{ current_weather.icon }}.png" alt="Image">
+            </div>
+        </div>
+    </div> -->
+    <!-- <div class="container">
+        <div class="row">
+            <div class="col">
+                <h3>FORECAST</h3>
+            </div>
+        </div>
+        {% for day in forecast %}
+            <div class="row" style="border:1px solid black">
+                <div class="col">
+                    <p></p>
+                    <p>sunrise: {{day.sunrise}}</p>
+                    <p>sunset: {{day.sunset}}</p>
+                    <p>temperature morn: {{day.temperature_morn}}</p>
+                    <p>temperature day: {{day.temperature_day}}</p>
+                    <p>temperature eve: {{day.temperature_eve}}</p>
+                    <p>temperature nigh: {{day.temperature_night}}</p>
+                    <p>temperature min: {{day.temperature_min}}</p>
+                    <p>temperature max: {{day.temperature_max}}</p>
+                    <p>feels_like morn: {{day.feels_like_morn}}</p>
+                    <p>feels_like day: {{day.feels_like_day}}</p>
+                    <p>feels_like eve: {{day.feels_like_eve}}</p>
+                    <p>feels_like night: {{day.feels_like_nught}}</p>
+                    <p>pressure: {{day.pressure}}</p>
+                    <p>humidity: {{day.humidity}}</p>
+                    <p>clouds: {{day.clouds}}</p>
+                    <p>uvi: {{day.uvi}}</p>
+                    <p>wind_speed: {{day.wind_speed}}</p>
+                    <p>wind_deg: {{day.wind_deg}}</p>
+                    <p>main: {{day.main}}</p>
+                    <p>description: {{day.description}}</p>
+                    <img src="http://openweathermap.org/img/w/{{ day.icon }}.png" alt="Image">
+                </div>
+            </div>
+            <br>
+        {% endfor %}
+    </div> -->
 {% endblock content %}
