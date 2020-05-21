@@ -22,9 +22,9 @@ def index(request):
         city_weather = requests.get(url).json() #request the API data and convert the JSON to Python data types
         weather = {
             'id' : city_weather['id'],
-            'city' : city_weather['name'],
-            'temperature' : round(city_weather['main']['temp'], 1),
-            'feels_like' : round(city_weather['main']['feels_like'], 1),
+            'city' : city.name,
+            'temperature' : round(city_weather['main']['temp']),
+            'feels_like' : round(city_weather['main']['feels_like']),
             'description' : city_weather['weather'][0]['description'],
             'icon' : city_weather['weather'][0]['icon']
         }
@@ -49,8 +49,8 @@ def city_detail(request, geoname_id):
     current_weather = {
             'sunrise' : city_weather['current']['sunrise'],
             'sunset' : city_weather['current']['sunset'],
-            'temperature' : round(city_weather['current']['temp'], 1),
-            'feels_like' : round(city_weather['current']['feels_like'], 1),
+            'temperature' : round(city_weather['current']['temp']),
+            'feels_like' : round(city_weather['current']['feels_like']),
             'pressure' : city_weather['current']['pressure'],
             'humidity' : city_weather['current']['humidity'],
             'clouds' : city_weather['current']['clouds'],
@@ -70,16 +70,16 @@ def city_detail(request, geoname_id):
         forecast_daily = {
             'sunrise' : day['sunrise'],
             'sunset' : day['sunset'],
-            'temperature_morn' : round(day['temp']['morn'], 1),
-            'temperature_day' : round(day['temp']['day'], 1),
-            'temperature_eve' : round(day['temp']['eve'], 1),
-            'temperature_night' : round(day['temp']['night'], 1),
-            'temperature_min' : round(day['temp']['min'], 1),
-            'temperature_max' : round(day['temp']['max'], 1),
-            'feels_like_morn' : round(day['feels_like']['morn'], 1),
-            'feels_like_day' : round(day['feels_like']['day'], 1),
-            'feels_like_eve' : round(day['feels_like']['eve'], 1),
-            'feels_like_night' : round(day['feels_like']['night'], 1),
+            'temperature_morn' : round(day['temp']['morn']),
+            'temperature_day' : round(day['temp']['day']),
+            'temperature_eve' : round(day['temp']['eve']),
+            'temperature_night' : round(day['temp']['night']),
+            'temperature_min' : round(day['temp']['min']),
+            'temperature_max' : round(day['temp']['max']),
+            'feels_like_morn' : round(day['feels_like']['morn']),
+            'feels_like_day' : round(day['feels_like']['day']),
+            'feels_like_eve' : round(day['feels_like']['eve']),
+            'feels_like_night' : round(day['feels_like']['night']),
             'pressure' : day['pressure'],
             'humidity' : day['humidity'],
             'clouds' : day['clouds'],
@@ -109,7 +109,7 @@ def search(request):
     weather = {
         'id' : city_weather['id'],
         'city' : city_weather['name'],
-        'temperature' : round(city_weather['main']['temp'], 1),
+        'temperature' : round(city_weather['main']['temp']),
         'description' : city_weather['weather'][0]['description'],
         'icon' : city_weather['weather'][0]['icon']
     }
