@@ -7,9 +7,24 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>What's the weather like?</title>
         <link href="{% static 'bootstrap-4.4.1-dist/css/bootstrap.css' %}" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=M PLUS 1p' rel='stylesheet'>
         <link href="{% static 'css/base.css' %}" rel="stylesheet">
     </head>
-    <body>
+    <body style="background-image: url({% static 'weather/clouds.jpg' %}); background-size: auto;">
+        <body> 
+            <div class="container" style="background-color: #3C8ABC; height:80px; padding:0px; margin:0px; max-width:100%; item-aligntment">
+                <div class="row" style="width: 70%; margin:auto;">
+                    <div class="col-3">
+                        <h4 style="font-family: 'M PLUS 1p';font-size: 45px; color:white; padding: 10px;"> <a id="logo" href="/">WEATHER</a></h4>
+                    </div>
+                    <div class="col" style="padding-top:20px">
+                        <form action="{% url 'search' %}" method="GET">
+                            <input style="width: 85%; height:35px;" type="text" id="cityName" placeholder="Enter a city" name="cityName" required>
+                            <input type="submit" class="example_c"  value="Search">
+                        </form>
+                    </div>
+                </div>
+            </div>
         <main>
             {% block content %}
             {% endblock content %} 
