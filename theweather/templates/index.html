@@ -1,31 +1,37 @@
 {% extends 'base.html' %}
 
-{% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col">
 
-                <form action="find/" method="GET">
-                    <input type="text" id="cityName" name="cityName" required>
-                    <input type="submit" value="Search">
-                </form>
-            </div>
-        </div>
-    </div>
- 
-    {% for city in weather_data %}
-        <div class="contaner" style="border: 1px solid black">
-            <div class="row">
-                <div class="col">
-                    <p>City: <a href="{% url 'city_detail' city.id %}">{{city.city}} </a></p>
-                    <p>City ID: {{city.id}}</p>
-                    <p>temperature: {{city.temperature}}</p>
-                    <p>feels_like: {{city.feels_like}}</p>
-                    <p>description: {{city.description}}</p>
-                    <img src="http://openweathermap.org/img/w/{{ city.icon }}.png" alt="Image">
+{% block content %}
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelector('.topOfCityColumn').onmouseover = function() {
+            document.querySelector('.topOfCityColumn').style.cssText='background-color: red; height:10px; margin:0px;'
+        };
+        document.querySelector('#topOfCityColumn').onmouseout = function() {
+            document.querySelector('#topOfCityColumn').style.cssText='background-color: aliceblue; height:10px; margin:0px;'
+        }; 
+    });
+</script>
+
+        <div class="container" style="max-width: 100%; margin:10px">
+            <div class=" row justify-content-center" id='rowTest' style="margin: 0px; width:95%; margin:auto" >
+                {% for city in weather_data %}
+                <div class="col" id='cityCol' style="background-color: #73BBD9; border:1px solid white; padding:0px;">
+                    <div id="topOfCityColumn" class="topOfCityColumn" style="background-color: aliceblue; height:10px; margin:0px;"></div>
+                    <div class="row" style="padding: 0px; margin:0px;">
+                        <div class="col-8" id="example_2" style="padding: 0px; margin-left:5px;"><p style="font-family: 'Times New Roman', Times, serif; font-size: 28px; color:white;"> <a href="{% url 'city_detail' city.id %}">{{city.city}}</a></p></div>
+                        <div class="col-3" style="font-family: 'M PLUS 1p'; text-align: end; color:white; font-size:20px; margin-top:5px;"><p>{{city.temperature}}°</p></div>
+                    </div>
+                    <div class="row" style="padding: 0px; margin:0px;">
+                        <img src="http://openweathermap.org/img/w/{{ city.icon }}.png" alt="Image">
+                    </div>
+                    <p style="font-family: 'M PLUS 1p'; margin-left:10px; color:white">Feels like {{city.feels_like}}°, {{city.description}}. </p>                    
                 </div>
-                
+                {% endfor %}
             </div>
         </div>
-    {% endfor %}
+        
+
+        
+    
 {% endblock content %}
