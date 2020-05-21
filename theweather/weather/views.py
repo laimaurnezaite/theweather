@@ -47,6 +47,7 @@ def city_detail(request, geoname_id):
     
     # current weather
     current_weather = {
+            'name' : cityObject.name,
             'sunrise' : city_weather['current']['sunrise'],
             'sunset' : city_weather['current']['sunset'],
             'temperature' : round(city_weather['current']['temp']),
