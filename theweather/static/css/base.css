@@ -1,3 +1,49 @@
+.container {
+    border: 1px solid red;
+}
+/* a, a:hover  {
+    color: white;
+    text-decoration: none;
+} */
+#logo {
+    color: white;
+    text-decoration: none;
+}
+
+.example_c {
+    color: #3C8ABC !important;
+    /* text-transform: uppercase; */
+    text-decoration: none;
+    background: #ffffff;
+    /* padding: 20px; */
+    /* border: 1px solid #494949 !important; */
+    display: inline-block;
+    transition: all 0.4s ease 0s;
+    height:35px;
+}
+
+.example_c:hover {
+    color: #ffffff !important;
+    background: #3C8ABC;
+    border-color: #ffffff !important;
+    transition: all 0.4s ease 0s;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* button {
     margin: 1%;
     width: 150px;
