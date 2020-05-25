@@ -1,29 +1,87 @@
 {% extends 'base.html' %}
 
 {% block content %}
-   <style type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    
+    <style type="text/css">
         .city-col {
-            border-top: 5px solid green;
-            background-color: #73BBD9;
+            border-top: 5px solid white;
+            background-color: white;
+            text-transform: uppercase;
+            border-bottom: 5px solid #faa31a;
+            margin-right: 10px;
+            position:relative;
+            transition: all .2s ease-in-out;
         }
         .city-col:hover {
-            border-top: 5px solid red;
-            transform: scale(1.5);
+            border-top: 5px solid #faa31a;
+            transform: scale(1.2);
+            border-bottom: 5px solid white;
+            z-index: 2;
         }
+        .city-name {
+            color: #3C8ABC;
+            font-family: 'Times New Roman', Times, serif; 
+            font-size: 28px; 
+        }
+        .city-name:hover {
+            color: #3C8ABC;
+            text-decoration: none;
+        }
+        .index-container {
+            max-width: 100%; 
+            margin:10px
+        }
+        .index-row {
+            margin: 0px; 
+            width:95%; 
+            margin:auto;
+        }
+        .city-name-row {
+            padding: 0px; 
+            margin:0px;
+        }
+        .image-col {
+            padding:0px;
+        }
+        .temperature-col {
+            padding:0px; 
+            margin:auto;
+            font-family: 'M PLUS 1p'; 
+            font-size:20px; 
+        }
+        .description-col {
+            border-left: 1px solid black; 
+            margin:auto;
+        }
+        .description {
+            font-family: 'M PLUS 1p'; 
+            font-size:16px; 
+            margin:auto;
+        }
+        
+
     </style>
-    <div class="container" style="max-width: 100%; margin:10px">
-        <div class=" row justify-content-center" id='rowTest' style="margin: 0px; width:95%; margin:auto" >
+    <div class="container index-container">
+        <div class="row justify-content-center index-row">
             {% for city in weather_data %}
-            <div class="col city-col" id='cityCol'>
-                <div class="row" style="padding: 0px; margin:0px;">
-                    <div class="col-8" id="example_2" style="padding: 0px; margin-left:5px;"><p style="font-family: 'Times New Roman', Times, serif; font-size: 28px; color:white;"> <a href="{% url 'city_detail' city.id %}">{{city.city}}</a></p></div>
-                    <div class="col-3" style="font-family: 'M PLUS 1p'; text-align: end; color:white; font-size:20px; margin-top:5px;"><p>{{city.temperature}}°</p></div>
+            <div class="col city-col">
+                <div class="row city-name-row">
+                    <p><a class="city-name" href="{% url 'city_detail' city.id %}">{{city.city}}</a></p>
                 </div>
-                <div class="row" style="padding: 0px; margin:0px;">
-                    <img src="http://openweathermap.org/img/w/{{ city.icon }}.png" alt="Image">
+                <div class="row" >
+                    <div class="col-3 image-col">
+                        <img src="http://openweathermap.org/img/w/{{ city.icon }}.png" alt="Image">
+                    </div>
+                    <div class="col-2 temperature-col">
+                        <p>{{city.temperature}}°</p>
+                    </div>
+                    <div class="col description-col">
+                        <p class="description">{{city.description}}</p>
+                    </div>
                 </div>
-                <p style="font-family: 'M PLUS 1p'; margin-left:10px; color:white">Feels like {{city.feels_like}}°, {{city.description}}. </p>                    
             </div>
+            <br>
             {% endfor %}
         </div>
     </div>
