@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    
+    <style type="text/css">
+        .city-col {
+            border-top: 5px solid white;
+            background-color: white;
+            text-transform: uppercase;
+            border-bottom: 5px solid #faa31a;
+            margin-right: 10px;
+            position:relative;
+            transition: all .2s ease-in-out;
+            
+        }
+
+        .city-name {
+            color: #3C8ABC;
+            font-family: 'Times New Roman', Times, serif; 
+            font-size: 20px; 
+            margin: auto;
+            text-decoration: none;
+        }
+        a {
+            color: #3C8ABC;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #3C8ABC;
+            text-decoration: underline;
+        }
+        .index-container {
+            max-width: 100%; 
+            margin:10px
+        }
+        .index-row {
+            margin: 0px; 
+            width:70%; 
+            margin:auto;
+        }
+ 
+    </style>
+    <div class="container index-container">
+        <div class="row justify-content-center index-row">
+            <div class="col city-col">
+                <div class="row city-name-row">
+                    <p class="city-name">{{message}}.</p>
+                </div> 
+                <div class="row city-name-row">
+                    <p class="city-name">Back to <a href="/">homepage</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
