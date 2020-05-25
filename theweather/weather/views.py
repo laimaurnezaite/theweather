@@ -67,7 +67,6 @@ def city_detail(request, geoname_id):
     # forecast 8 days (current + 7days)
     forecast = []
     for day in city_weather['daily']:
-        # print(round(day['temp']['morn'], 1))
         forecast_daily = {
             'sunrise' : day['sunrise'],
             'sunset' : day['sunset'],
@@ -102,7 +101,37 @@ def city_detail(request, geoname_id):
 def search(request):
     api_key = os.environ['API_KEY']
     cityName = request.GET.get('cityName')
-    cityObject = City.objects.get(name = cityName)
+    cityObject = City.objects.filter(name = cityName)
+    weather_data = []
+    for city in cityObject:
+        
+        id = city.geoname_id
+        url = f'http://api.openweathermap.org/data/2.5/weather?id={id}&&units=metric&appid={api_key}'
+        city_weather = requests.get(url).json() #request the API data and convert the JSON to Python data types
+        weather = {
+            'id' : city_weather['id'],
+            'city' : city.name,
+            'lat' : city.lat,
+            'lon' : city.lon,
+            'country':city.country,
+            'temperature' : round(city_weather['main']['temp']),
+            'feels_like' : round(city_weather['main']['feels_like']),
+            'description' : city_weather['weather'][0]['description'],
+            'icon' : city_weather['weather'][0]['icon']
+        }
+        weather_data.append(weather)
+    if len(weather_data) == 0:
+        context = {
+            'message':"Sorry, no cities found in search"
+        }
+        return render(request, 'apology.html', context)
+
+    context = {
+            'weather_data':weather_data
+        }
+    return render(request, 'searchresults.html', context)
+
+
 
     # get current weather
     url= f'http://api.openweathermap.org/data/2.5/weather?id={cityObject.geoname_id}&&units=metric&appid={api_key}'
