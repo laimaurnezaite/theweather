@@ -1,16 +1,97 @@
 {% extends 'base.html' %}
 
 {% block content %}
-        <div class="contaner" style="border: 1px solid black">
-            <div class="row">
-                <div class="col">
-                    <p>City: <a href="{% url 'city_detail' weather.id %}">{{weather.city}} </a></p>
-                    <p>City: {{weather.city}}</p>
-                    <p>temperature: {{weather.temperature}}</p>
-                    <p>description: {{weather.description}}</p>
-                    <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="Image">
+<style type="text/css">
+    .city-col {
+        border-top: 5px solid white;
+        background-color: white;
+        text-transform: uppercase;
+        border: 1px solid #3C8ABC;
+        margin-right: 10px;
+        position:relative;
+        transition: all .2s ease-in-out;
+    }
+    .city-col:hover {
+        transform: scale(1.2);
+        z-index: 2;
+    }
+    .city-name {
+        color: #3C8ABC;
+        font-family: 'Times New Roman', Times, serif; 
+        font-size: 16px; 
+    }
+    .city-name:hover {
+        color: #3C8ABC;
+        text-decoration: none;
+    }
+    .index-container {
+        max-width: 100%; 
+        margin:10px
+    }
+    .index-row {
+        margin: 0px; 
+        width:95%; 
+        margin:auto;
+    }
+    .city-name-row {
+        padding: 0px; 
+        margin:0px;
+    }
+    .image-col {
+        padding:0px;
+    }
+    .temperature-col {
+        padding:0px; 
+        margin:auto;
+        font-family: 'M PLUS 1p'; 
+        font-size:16px; 
+    }
+    .description-col {
+        border-left: 1px solid black; 
+        margin:auto;
+    }
+    .description {
+        font-family: 'M PLUS 1p'; 
+        font-size:16px; 
+        margin:auto;
+    }
+    .coords {
+        font-family: 'M PLUS 1p'; 
+        font-size:12px; 
+        margin:auto;
+    }
+    
+
+</style>
+    <div class="container index-container">
+        {% for city in weather_data %}
+            <div class="row justify-content-center index-row">
+                <div class="col-6 city-col">
+                    <div class="row" >
+                        <div class="col-1 image-col">
+                            <img src="http://openweathermap.org/img/w/{{ city.icon }}.png" alt="Image">
+                        </div>
+                        <div class="col-4" style="margin:auto;">
+                            <p style="margin: auto;"><a class="city-name" href="{% url 'city_detail' city.id %}">{{city.city}}, {{city.country}}</a></p>
+                        </div>
+
+                        <div class="col-1 temperature-col">
+                            <p style="margin: auto;">{{city.temperature}}°</p>
+                        </div>
+                        <div class="col description-col">
+                            <p class="description">{{city.description}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p class="coords"> Geo coords [{{city.lat}}, {{city.lon}}] </p>
+                        </div>
+                    </div>
                 </div>
-                
+                <br>
             </div>
-        </div>
+            <br>
+        {% endfor %}
+    </div>
+
 {% endblock content %}
