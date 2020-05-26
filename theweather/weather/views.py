@@ -50,7 +50,7 @@ def city_detail(request, geoname_id):
     
     # current weather
     current_weather = {
-            'date' : datetime.utcfromtimestamp(city_weather['current']['dt']).strftime('%m %d'),
+            'date' : datetime.utcfromtimestamp(city_weather['current']['dt']).strftime('%y %m %d'),
             'name' : cityObject.name,
             'sunrise' : city_weather['current']['sunrise'],
             'sunset' : city_weather['current']['sunset'],
@@ -74,7 +74,7 @@ def city_detail(request, geoname_id):
     for day in city_weather['daily']:
  
         forecast_daily = {
-            'date': datetime.utcfromtimestamp(day['dt']).strftime('%m %d'),
+            'date': datetime.utcfromtimestamp(day['dt']).strftime('%Y-%m-%d'),
             'sunrise' : day['sunrise'],
             'sunset' : day['sunset'],
             'temperature_morn' : round(day['temp']['morn']),
@@ -95,7 +95,7 @@ def city_detail(request, geoname_id):
             'wind_deg' : day['wind_deg'],
             'main' : day['weather'][0]['main'],
             'description' : day['weather'][0]['description'],
-            'icon' : f'http://openweathermap.org/img/wn/{ day["weather"][0]["icon"] }.png',
+            'icon' : f'http://openweathermap.org/img/wn/{ day["weather"][0]["icon"] }@2x.png',
             # 'icon' : day['weather'][0]['icon']
         }
         forecast.append(forecast_daily)
