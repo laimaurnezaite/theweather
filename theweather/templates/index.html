@@ -21,13 +21,10 @@
             border-bottom: 1px solid #515151;
             z-index: 2;
         }
-        .city-name {
-            color: #515151;
-            font-family: 'Times New Roman', Times, serif; 
+        .city-name { 
             font-size: 28px; 
         }
         .city-name:hover {
-            color: #515151;
             text-decoration: none;
         }
         .index-container {
@@ -49,19 +46,15 @@
         .temperature-col {
             padding:0px; 
             margin:auto;
-            color: #515151;
-            font-family: 'M PLUS 1p'; 
             font-size:20px; 
         }
         .description-col {
-            border-left: 1px solid black; 
+            border-left: 1px solid #515151; 
             margin:auto;
         }
-        .description {
-            font-family: 'M PLUS 1p'; 
+        .description, .temperature {
             font-size:16px; 
             margin:auto;
-            color: #515151;
         }
         
 
@@ -77,8 +70,8 @@
                     <div class="col-3 image-col">
                         <img src="{{ city.icon }}" alt="Image">
                     </div>
-                    <div class="col-2 temperature-col">
-                        <p>{{city.temperature}}°</p>
+                    <div class="col-2 temperature-col" >
+                        <p class="temperature" >{{city.temperature}}°</p>
                     </div>
                     <div class="col description-col">
                         <p class="description">{{city.description}}</p>
