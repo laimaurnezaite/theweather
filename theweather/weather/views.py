@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 import requests
 from .models import City
+from datetime import datetime
+# import datetime
 
 
 # Create your views here.
@@ -26,7 +28,8 @@ def index(request):
             'temperature' : round(city_weather['main']['temp']),
             'feels_like' : round(city_weather['main']['feels_like']),
             'description' : city_weather['weather'][0]['description'],
-            'icon' : city_weather['weather'][0]['icon']
+            'icon' : f'http://openweathermap.org/img/wn/{city_weather["weather"][0]["icon"]}.png',
+            # 'icon' : city_weather['weather'][0]['icon']
         }
         weather_data.append(weather)
        
@@ -47,6 +50,7 @@ def city_detail(request, geoname_id):
     
     # current weather
     current_weather = {
+            'date' : datetime.utcfromtimestamp(city_weather['current']['dt']).strftime('%m %d'),
             'name' : cityObject.name,
             'sunrise' : city_weather['current']['sunrise'],
             'sunset' : city_weather['current']['sunset'],
@@ -61,13 +65,16 @@ def city_detail(request, geoname_id):
             'wind_deg' : city_weather['current']['wind_deg'],
             'main' : city_weather['current']['weather'][0]['main'],
             'description' : city_weather['current']['weather'][0]['description'],
-            'icon' : city_weather['current']['weather'][0]['icon']
+            'icon' : f'http://openweathermap.org/img/wn/{ city_weather["current"]["weather"][0]["icon"] }.png',
+            # 'icon' : city_weather['current']['weather'][0]['icon']
         }
 
     # forecast 8 days (current + 7days)
     forecast = []
     for day in city_weather['daily']:
+ 
         forecast_daily = {
+            'date': datetime.utcfromtimestamp(day['dt']).strftime('%m %d'),
             'sunrise' : day['sunrise'],
             'sunset' : day['sunset'],
             'temperature_morn' : round(day['temp']['morn']),
@@ -88,7 +95,8 @@ def city_detail(request, geoname_id):
             'wind_deg' : day['wind_deg'],
             'main' : day['weather'][0]['main'],
             'description' : day['weather'][0]['description'],
-            'icon' : day['weather'][0]['icon']
+            'icon' : f'http://openweathermap.org/img/wn/{ day["weather"][0]["icon"] }.png',
+            # 'icon' : day['weather'][0]['icon']
         }
         forecast.append(forecast_daily)
 
