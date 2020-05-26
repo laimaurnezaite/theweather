@@ -8,23 +8,21 @@
         <title>What's the weather like?</title>
         <link href="{% static 'bootstrap-4.4.1-dist/css/bootstrap.css' %}" rel="stylesheet">
         <link href='https://fonts.googleapis.com/css?family=M PLUS 1p' rel='stylesheet'>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
         <link href="{% static 'css/base.css' %}" rel="stylesheet">
     </head>
     <body style="background-color: white;">
         <style type="text/css">
 
             #logo, #logo:hover  {
-                color:#515151;
                 text-decoration: none;
-                font-family: 'M PLUS 1p';
                 font-size: 45px; 
                 letter-spacing: 13px
             }
             .search-button {
-                color: #515151 !important;
                 text-decoration: none;
                 background: #ffffff;
-                font-family: 'M PLUS 1p';
+                
                 height:34px;
                 transition: all .2s ease-in-out;
             }
@@ -58,13 +56,17 @@
             #cityName{
                 width: 80%; 
                 height:35px;
-            }            
+            }
+            a, a:hover, p, input {
+                font-family: 'Open Sans', sans-serif;
+                color: #515151;
+            }         
         </style>
 
         <div id="page-container" style="position: relative;"> 
             <div class="container logo-container">
                 <div class="row logo-row">
-                    <div class="col">
+                    <div class="col-4">
                         <h4 class="logo-h">
                             <a id="logo" href="/">WEATHER</a>
                         </h4>
@@ -80,7 +82,7 @@
             <main>
                 {% block content %}
                 {% endblock content %} 
-                <img style="position: fixed; bottom:10px; right:10px;" src="{% static 'weather/cloud_1.png' %}">
+                <!-- <img style="position: fixed; bottom:10px; right:10px;" src="{% static 'weather/cloud_1.png' %}"> -->
             </main>
         </div>
     </body>
