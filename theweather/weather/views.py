@@ -5,6 +5,8 @@ import requests
 from .models import City
 from datetime import datetime
 # import datetime
+# from dateutil import tz
+# import datetime
 
 
 # Create your views here.
@@ -74,9 +76,13 @@ def city_detail(request, geoname_id):
     for day in city_weather['daily']:
  
         forecast_daily = {
-            'date': datetime.utcfromtimestamp(day['dt']).strftime('%Y %m %d'),
-            'sunrise' : day['sunrise'],
-            'sunset' : day['sunset'],
+            # 'date': datetime.utcfromtimestamp(day['dt']).strftime('%Y %m %d'),
+            'date_day': datetime.utcfromtimestamp(day['dt']).strftime('%Y %m %d'),
+            'week_day': datetime.utcfromtimestamp(day['dt']).strftime('%A'),
+            'sunrise': datetime.utcfromtimestamp(day['sunrise']).strftime('%H:%M'),
+            'sunset' : datetime.utcfromtimestamp(day['sunset']).strftime('%H:%M'),
+            # 'sunrise' : day['sunrise'],
+            # 'sunset' : day['sunset'],
             'temperature_morn' : round(day['temp']['morn']),
             'temperature_day' : round(day['temp']['day']),
             'temperature_eve' : round(day['temp']['eve']),
