@@ -6,7 +6,17 @@
             const elDailyWeather = document.getElementById('selected-daily-weather');
             console.log(dailyWeather);
             elDailyWeather.classList.remove('d-none');
-            elDailyWeather.innerHTML = JSON.stringify(dailyWeather);
+            /*document.getElementById('selected-daily-weather').innerHTML = JSON.stringify(dailyWeather.week_day);*/
+            document.getElementById('week_day-date').innerHTML = dailyWeather.week_day + ", " + dailyWeather.date_day;
+            document.getElementById('sunrise').innerHTML = "Sunrise: " + dailyWeather.sunrise;
+            document.getElementById('sunset').innerHTML = "Sunset: " + dailyWeather.sunset;
+            document.getElementById('min-max-temperature').innerHTML = "Temperature from " + dailyWeather.temperature_min + "° to " + dailyWeather.temperature_max +"°";
+            document.getElementById('pressure').innerHTML = "Pressure: " + dailyWeather.pressure + " mb";
+            document.getElementById('humidity').innerHTML = "Humidity: " + dailyWeather.humidity + "%";
+            document.getElementById('wind_speed').innerHTML = "Wind: " + dailyWeather.wind_speed + " km/h";
+            document.getElementById('uvi').innerHTML = "UV: " + dailyWeather.uvi;
+            document.getElementById('icon').attr("src", dailyWeather.icon);
+
         }
     </script>
     <style type="text/css">
@@ -85,6 +95,9 @@
         }
         .forecast-date {
             margin: auto; 
+        }
+        .week-day {
+            margin: auto; 
             border-bottom:1px solid #515151;
         }
         .night_and_day_temperature {
@@ -142,7 +155,12 @@
             <div class="col forecast" onclick="updateDailyWeather({{ daily }})">
                 <div class="row">
                     <div class="col" style="text-align: center; ">
-                        <p class="forecast-date">{{daily.date}}</p>
+                        <p class="forecast-date">{{daily.date_day}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col" style="text-align: center; ">
+                        <p class="week-day">{{daily.week_day}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -170,7 +188,7 @@
 
     <div class="container" style="margin:0px; max-width:100%; margin-top:40px;">
         {% for daily in forecast %}
-            {% if daily.date == current_weather.date  %}
+            {% if daily.date_day == current_weather.date  %}
                 <div class="row justify-content-between" style="padding:0px; margin:15px;">
                     <div class="col-3 morn-day-eve-night">
                         <div class="row">
@@ -243,64 +261,47 @@
                 </div>
                 <div class="row" style="border:1px solid black; padding:0px; margin:20px;">
                     <div class="col-1 image-col">
-                        <img src="{{ daily.icon }}" alt="Image">
+                        <img id="icon" src="{{daily.icon}}" alt="Image">
                     </div>
-                    <div class="col" style="border:1px solid red;">
-                        <div class="row">
+                    <div class="col">
+                        <div class="row" style="margin: 10px;">
+                            <div class="col max-temperature-col">
+                                <p id="week_day-date" style="border-bottom: 1px solid black;" class="max-temperature">{{daily.week_day}}, {{daily.date_day}}</p>
+                            </div> 
+                        </div>
+                        <div class="row" style="margin: 10px;">
+                            <div class="col max-temperature-col">
+                                <p id="min-max-temperature" class="max-temperature">Temperature from {{daily.temperature_min}}° to {{daily.temperature_max}}°</p>
+                            </div> 
+                        </div>
+                        <div class="row" style="margin: 10px;">
                             <div class="col-3 max-temperature-col">
-                                <p class="max-temperature">Max temperature through day: {{daily.temperature_max}}°</p>
+                                <p id="sunrise" class="max-temperature">Sunrise: {{daily.sunrise}}</p>
                             </div>
                             <div class="col min-temperature-col">
-                                <p class="min-temperature">Min temperature through day: {{daily.temperature_min}}°</p>
+                                <p id="sunset" class="min-temperature">Sunset: {{daily.sunset}}</p>
                             </div>    
                         </div>
-                        <div class="row">
+                        <div class="row" style="margin: 10px;">
                             <div class="col-3 max-temperature-col">
-                                <p class="max-temperature">Sunrise: {{daily.sunrise}}</p>
+                                <p id="pressure" class="max-temperature">Pressure: {{daily.pressure}} mb</p>
                             </div>
                             <div class="col min-temperature-col">
-                                <p class="min-temperature">Sunset: {{daily.sunset}}</p>
+                                <p id="humidity" class="min-temperature">Humidity: {{daily.humidity}}%</p>
                             </div>    
                         </div>
-                        
-
+                        <div class="row" style="margin: 10px;">
+                            <div class="col-3 max-temperature-col">
+                                <p id="wind_speed" class="max-temperature">Wind: {{daily.wind_speed}} km/h</p>
+                            </div>
+                            <div class="col min-temperature-col">
+                                <p id="uvi" class="min-temperature">UV: {{daily.uvi}}</p>
+                            </div>    
+                        </div>
                     </div>
                 </div>
             {% endif %}
         {% endfor %}
-        
-        
-
     </div>
     
-    <!-- {% for daily in forecast %}
-        {% if daily.date == current_weather.date  %}
-            <p>temperature morn: {{daily.temperature_morn}}°</p>
-        {% endif %}
-    {% endfor %} -->
-                
-                <!-- <p>sunrise: {{daily.sunrise}}</p>
-                <p>sunset: {{daily.sunset}}</p>
-                <p>temperature morn: {{daily.temperature_morn}}</p>
-                <p>temperature day: {{daily.temperature_day}}</p>
-                <p>temperature eve: {{daily.temperature_eve}}</p>
-                <p>temperature nigh: {{daily.temperature_night}}</p>
-                <p>temperature min: {{daily.temperature_min}}</p>
-                <p>temperature max: {{daily.temperature_max}}</p>
-                <p>feels_like morn: {{daily.feels_like_morn}}</p>
-                <p>feels_like day: {{daily.feels_like_day}}</p>
-                <p>feels_like eve: {{daily.feels_like_eve}}</p>
-                <p>feels_like night: {{daily.feels_like_nught}}</p>
-                <p>pressure: {{daily.pressure}}</p>
-                <p>humidity: {{daily.humidity}}</p>
-                <p>clouds: {{daily.clouds}}</p>
-                <p>uvi: {{daily.uvi}}</p>
-                <p>wind_speed: {{daily.wind_speed}}</p>
-                <p>wind_deg: {{daily.wind_deg}}</p>
-                <p>main: {{daily.main}}</p>
-                <p>description: {{daily.description}}</p>
-                <img src="http://openweathermap.org/img/w/{{ daily.icon }}.png" alt="Image"> -->
-            
-        
-
 {% endblock content %}
