@@ -30,19 +30,21 @@
             padding:0px;
             margin:0px;
         }
-        .temperature-col {
+        .temperature-col, .max-temperature-col, .min-temperature-col {
             text-align: center;
             padding:0px; 
             margin:auto;
-            font-family: 'Open Sans', sans-serif;
             font-size:16px; 
         }
+        .max-temperature-col, .min-temperature-col {
+            text-align: start;
+        }
+    
         .description-col {
             border-left: 1px solid #515151; 
             margin:auto;
         }
         .description {
-            font-family: 'Open Sans', sans-serif;
             font-size:16px; 
             margin:auto;
         }
@@ -71,7 +73,7 @@
         .left-margin-col {
             margin-left:6%;
         }
-        .current-temperature {
+        .current-temperature, .max-temperature, .min-temperature {
             margin: auto;
         }
         .now-title {
@@ -93,6 +95,10 @@
         }
         .night_temperature, .day_temperature {
             text-align:center;
+        }
+        .morn-day-eve-night {
+            border: 1px solid #515151;
+            margin:5px;
         }
     
     </style>
@@ -161,34 +167,119 @@
         </div>
     </div>
     <div id="selected-daily-weather" class="d-none"></div>
+
+    <div class="container" style="margin:0px; max-width:100%; margin-top:40px;">
+        {% for daily in forecast %}
+            {% if daily.date == current_weather.date  %}
+                <div class="row justify-content-between" style="padding:0px; margin:15px;">
+                    <div class="col-3 morn-day-eve-night">
+                        <div class="row">
+                            <div class="col">
+                                <p style="text-align: center; border-bottom: 1px solid black;">Morning</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p>{{daily.temperature_morn}}°</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p>Feels like {{daily.feels_like_morn}}°</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col morn-day-eve-night">
+                        <div class="row">
+                            <div class="col">
+                                <p style="text-align: center; border-bottom: 1px solid black;">Day</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p>{{daily.temperature_day}}°</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p>Feels like {{daily.feels_like_day}}°</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col morn-day-eve-night">
+                        <div class="row">
+                            <div class="col">
+                                <p style="text-align: center; border-bottom: 1px solid black;">Evening</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p>{{daily.temperature_eve}}°</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p>Feels like {{daily.feels_like_eve}}°</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col morn-day-eve-night">
+                        <div class="row">
+                            <div class="col">
+                                <p style="text-align: center; border-bottom: 1px solid black;">Night</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p>{{daily.temperature_night}}°</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p>Feels like {{daily.feels_like_night}}°</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="border:1px solid black; padding:0px; margin:20px;">
+                    <div class="col-1 image-col">
+                        <img src="{{ daily.icon }}" alt="Image">
+                    </div>
+                    <div class="col" style="border:1px solid red;">
+                        <div class="row">
+                            <div class="col-3 max-temperature-col">
+                                <p class="max-temperature">Max temperature through day: {{daily.temperature_max}}°</p>
+                            </div>
+                            <div class="col min-temperature-col">
+                                <p class="min-temperature">Min temperature through day: {{daily.temperature_min}}°</p>
+                            </div>    
+                        </div>
+                        <div class="row">
+                            <div class="col-3 max-temperature-col">
+                                <p class="max-temperature">Sunrise: {{daily.sunrise}}</p>
+                            </div>
+                            <div class="col min-temperature-col">
+                                <p class="min-temperature">Sunset: {{daily.sunset}}</p>
+                            </div>    
+                        </div>
+                        
+
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
         
-                <!-- <p>sunrise: {{day.sunrise}}</p>
-                <p>sunset: {{day.sunset}}</p>
-                <p>temperature morn: {{day.temperature_morn}}</p>
-                <p>temperature day: {{day.temperature_day}}</p>
-                <p>temperature eve: {{day.temperature_eve}}</p>
-                <p>temperature nigh: {{day.temperature_night}}</p>
-                <p>temperature min: {{day.temperature_min}}</p>
-                <p>temperature max: {{day.temperature_max}}</p>
-                <p>feels_like morn: {{day.feels_like_morn}}</p>
-                <p>feels_like day: {{day.feels_like_day}}</p>
-                <p>feels_like eve: {{day.feels_like_eve}}</p>
-                <p>feels_like night: {{day.feels_like_nught}}</p>
-                <p>pressure: {{day.pressure}}</p>
-                <p>humidity: {{day.humidity}}</p>
-                <p>clouds: {{day.clouds}}</p>
-                <p>uvi: {{day.uvi}}</p>
-                <p>wind_speed: {{day.wind_speed}}</p>
-                <p>wind_deg: {{day.wind_deg}}</p>
-                <p>main: {{day.main}}</p>
-                <p>description: {{day.description}}</p>
-                <img src="http://openweathermap.org/img/w/{{ day.icon }}.png" alt="Image"> -->
-           
-            
-        <div class="row">
-            
-            <!-- {% for daily in forecast %}
-                <p>sunrise: {{daily.sunrise}}</p>
+        
+
+    </div>
+    
+    <!-- {% for daily in forecast %}
+        {% if daily.date == current_weather.date  %}
+            <p>temperature morn: {{daily.temperature_morn}}°</p>
+        {% endif %}
+    {% endfor %} -->
+                
+                <!-- <p>sunrise: {{daily.sunrise}}</p>
                 <p>sunset: {{daily.sunset}}</p>
                 <p>temperature morn: {{daily.temperature_morn}}</p>
                 <p>temperature day: {{daily.temperature_day}}</p>
@@ -208,8 +299,8 @@
                 <p>wind_deg: {{daily.wind_deg}}</p>
                 <p>main: {{daily.main}}</p>
                 <p>description: {{daily.description}}</p>
-                <img src="http://openweathermap.org/img/w/{{ daily.icon }}.png" alt="Image">
-            {% endfor %} -->
-        </div>
+                <img src="http://openweathermap.org/img/w/{{ daily.icon }}.png" alt="Image"> -->
+            
+        
 
 {% endblock content %}
