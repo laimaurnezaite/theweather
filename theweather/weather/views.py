@@ -4,10 +4,10 @@ from django.http import HttpResponse
 import requests
 from .models import City
 from datetime import datetime
-# import datetime
-# from dateutil import tz
-# import datetime
 
+
+import pytz
+from django.utils.timezone import make_aware
 
 # Create your views here.
 
@@ -31,7 +31,6 @@ def index(request):
             'feels_like' : round(city_weather['main']['feels_like']),
             'description' : city_weather['weather'][0]['description'],
             'icon' : f'http://openweathermap.org/img/wn/{city_weather["weather"][0]["icon"]}.png',
-            # 'icon' : city_weather['weather'][0]['icon']
         }
         weather_data.append(weather)
        
@@ -54,8 +53,6 @@ def city_detail(request, geoname_id):
     current_weather = {
             'date' : datetime.utcfromtimestamp(city_weather['current']['dt']).strftime('%Y %m %d'),
             'name' : cityObject.name,
-            'sunrise' : city_weather['current']['sunrise'],
-            'sunset' : city_weather['current']['sunset'],
             'temperature' : round(city_weather['current']['temp']),
             'feels_like' : round(city_weather['current']['feels_like']),
             'pressure' : city_weather['current']['pressure'],
@@ -68,18 +65,26 @@ def city_detail(request, geoname_id):
             'main' : city_weather['current']['weather'][0]['main'],
             'description' : city_weather['current']['weather'][0]['description'],
             'icon' : f'http://openweathermap.org/img/wn/{ city_weather["current"]["weather"][0]["icon"] }.png',
-            # 'icon' : city_weather['current']['weather'][0]['icon']
         }
+    timezone= city_weather['timezone']
 
     # forecast 8 days (current + 7days)
     forecast = []
     for day in city_weather['daily']:
- 
+        local_tz = pytz.timezone(timezone)
+        # get sunrise
+        utc_sunrise = datetime.utcfromtimestamp(day['sunrise']).replace(tzinfo=pytz.utc)
+        local_sunrise = local_tz.normalize(utc_sunrise.astimezone(local_tz)).strftime('%H:%M')
+        
+        # get sunset
+        utc_sunset = datetime.utcfromtimestamp(day['sunset']).replace(tzinfo=pytz.utc)
+        local_sunset = local_tz.normalize(utc_sunset.astimezone(local_tz)).strftime('%H:%M')
+
         forecast_daily = {
             'date_day': datetime.utcfromtimestamp(day['dt']).strftime('%Y %m %d'),
             'week_day': datetime.utcfromtimestamp(day['dt']).strftime('%A'),
-            'sunrise': datetime.utcfromtimestamp(day['sunrise']).strftime('%H:%M'),
-            'sunset' : datetime.utcfromtimestamp(day['sunset']).strftime('%H:%M'),
+            'sunrise': local_sunrise,
+            'sunset' : local_sunset,
             'temperature_morn' : round(day['temp']['morn']),
             'temperature_day' : round(day['temp']['day']),
             'temperature_eve' : round(day['temp']['eve']),
