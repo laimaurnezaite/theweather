@@ -28,6 +28,7 @@
             text-decoration: none;
         }
         .index-container {
+            cursor: pointer;
             max-width: 100%; 
             margin:10px
         }
@@ -59,24 +60,26 @@
         
 
     </style>
-    <div class="container index-container">
-        <div class="row justify-content-center index-row">
+    <div class="container index-container" style="margin-top:2%">
+        <div class="row index-row justify-content-center" >
             {% for city in weather_data %}
-            <div class="col city-col">
-                <div class="row city-name-row">
-                    <p><a class="city-name" href="{% url 'city_detail' city.id %}">{{city.city}}</a></p>
-                </div>
-                <div class="row" >
-                    <div class="col-3 image-col">
-                        <img src="{{ city.icon }}" alt="Image">
+            <div class="col-3 city-col" style="margin:2%" >
+                <a class="city-name" href="{% url 'city_detail' city.id %}">
+                    <div class="row city-name-row">
+                        <p>{{city.city}}</p>
                     </div>
-                    <div class="col-2 temperature-col" >
-                        <p class="temperature" >{{city.temperature}}°</p>
+                    <div class="row" >
+                        <div class="col-3 image-col">
+                            <img src="{{ city.icon }}" alt="Image">
+                        </div>
+                        <div class="col-2 temperature-col" >
+                            <p class="temperature" >{{city.temperature}}°</p>
+                        </div>
+                        <div class="col description-col">
+                            <p class="description">{{city.description}}</p>
+                        </div>
                     </div>
-                    <div class="col description-col">
-                        <p class="description">{{city.description}}</p>
-                    </div>
-                </div>
+                </a>
             </div>
             <br>
             {% endfor %}
