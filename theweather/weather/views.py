@@ -76,13 +76,10 @@ def city_detail(request, geoname_id):
     for day in city_weather['daily']:
  
         forecast_daily = {
-            # 'date': datetime.utcfromtimestamp(day['dt']).strftime('%Y %m %d'),
             'date_day': datetime.utcfromtimestamp(day['dt']).strftime('%Y %m %d'),
             'week_day': datetime.utcfromtimestamp(day['dt']).strftime('%A'),
             'sunrise': datetime.utcfromtimestamp(day['sunrise']).strftime('%H:%M'),
             'sunset' : datetime.utcfromtimestamp(day['sunset']).strftime('%H:%M'),
-            # 'sunrise' : day['sunrise'],
-            # 'sunset' : day['sunset'],
             'temperature_morn' : round(day['temp']['morn']),
             'temperature_day' : round(day['temp']['day']),
             'temperature_eve' : round(day['temp']['eve']),
@@ -102,7 +99,6 @@ def city_detail(request, geoname_id):
             'main' : day['weather'][0]['main'],
             'description' : day['weather'][0]['description'],
             'icon' : f'http://openweathermap.org/img/wn/{ day["weather"][0]["icon"] }@2x.png',
-            # 'icon' : day['weather'][0]['icon']
         }
         forecast.append(forecast_daily)
 
@@ -114,7 +110,9 @@ def city_detail(request, geoname_id):
 
 def search(request):
     api_key = os.environ['API_KEY']
-    cityName = request.GET.get('cityName')
+    cityName = request.GET.get('cityName').capitalize()
+    print("TEST")
+    print(cityName)
     cityObject = City.objects.filter(name = cityName)
     weather_data = []
     for city in cityObject:
@@ -142,23 +140,5 @@ def search(request):
 
     context = {
             'weather_data':weather_data
-        }
-    return render(request, 'searchresults.html', context)
-
-
-
-    # get current weather
-    url= f'http://api.openweathermap.org/data/2.5/weather?id={cityObject.geoname_id}&&units=metric&appid={api_key}'
-    city_weather = requests.get(url).json() #request the API data and convert the JSON to Python data types
-    weather = {
-        'id' : city_weather['id'],
-        'city' : city_weather['name'],
-        'temperature' : round(city_weather['main']['temp']),
-        'description' : city_weather['weather'][0]['description'],
-        'icon' : city_weather['weather'][0]['icon']
-    }
-
-    context = {
-            'weather':weather
         }
     return render(request, 'searchresults.html', context)
