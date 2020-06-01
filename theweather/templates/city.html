@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
-
+{% load tz %}
 {% block content %}
     <script>
+        
+
         function updateDailyWeather(dailyWeather) {
             const elDailyWeather = document.getElementById('selected-daily-weather');
             console.log(dailyWeather);
@@ -16,8 +18,8 @@
             document.getElementById('wind_speed').innerHTML = "Wind: " + dailyWeather.wind_speed + " km/h";
             document.getElementById('uvi').innerHTML = "UV: " + dailyWeather.uvi;
             document.getElementById('icon').attr("src", dailyWeather.icon);
-
         }
+
     </script>
     <style type="text/css">
         .current-weather-container, .forecast-title-container { 
@@ -58,6 +60,7 @@
             margin:5px;
             border-bottom: 5px solid #515151;
             transition: all .2s ease-in-out;
+            cursor: pointer;
         }
         .forecast:hover {
             border-top:5px solid #515151;
