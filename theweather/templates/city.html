@@ -20,6 +20,12 @@
         }
     </script>
     <style type="text/css">
+        .current-weather-container, .forecast-title-container {
+            background-color: white; 
+            padding:0px; 
+            margin:0px; 
+            max-width:100%;
+        }
         .current-col {
             background-color: white;
             text-transform: uppercase;
@@ -68,7 +74,7 @@
         .forecast:hover {
             border: 1px solid #515151;
             border-top:5px solid #515151;
-            transform: scale(1.2);
+            transform: scale(1.1);
             z-index: 2;
         }
         .hidden-data {
@@ -113,16 +119,20 @@
             border: 1px solid #515151;
             margin:5px;
         }
+        .current-city-row, .current-weather-row {
+            width: 70%; 
+            margin:auto;
+        }
     
     </style>
     <!-- current weather -->
-    <div class="container logo-container" style="margin-bottom: 3%;">
-        <div class="row logo-row">
+    <div class="container current-weather-container">
+        <div class="row current-city-row">
             <div class="col-4">
                 <p class="city_name">{{current_weather.name}}</p>
             </div>
         </div>
-        <div class="row logo-row">
+        <div class="row current-weather-row">
             <div class="col-1" style="margin-right: 20px;" >
                 <p class="now-title">Now:</p>
             </div>
@@ -142,7 +152,7 @@
         </div>
     </div>  
 
-    <div class="container logo-container">
+    <div class="container forecast-title-container">
         <div class="row logo-row">
             <div class="col">
                 <p class="forecast-title">Forecast:</p>
