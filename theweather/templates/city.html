@@ -20,39 +20,29 @@
         }
     </script>
     <style type="text/css">
-        .current-weather-container, .forecast-title-container {
-            background-color: white; 
-            padding:0px; 
-            margin:0px; 
+        .current-weather-container, .forecast-title-container { 
             max-width:100%;
         }
         .current-col {
-            background-color: white;
             text-transform: uppercase;
-            border: 1px solid #515151;
             margin-right: 10px;
             position:relative;
             height: 46px; 
         }
         .forecast-container {
             max-width: 100%; 
-            
         }
         .forecast-row {
             margin: 0%;
         }
         
-        .image-col {
-            padding:0px;
-            margin:0px;
-        }
-        .temperature-col, .max-temperature-col, .min-temperature-col {
+        .temperature-col, .data-col {
             text-align: center;
             padding:0px; 
             margin:auto;
             font-size:16px; 
         }
-        .max-temperature-col, .min-temperature-col {
+        .data-col {
             text-align: start;
         }
     
@@ -66,13 +56,10 @@
         }
         .forecast {
             margin:5px;
-            background-color: white;
-            border: 1px solid #515151;
             border-bottom: 5px solid #515151;
             transition: all .2s ease-in-out;
         }
         .forecast:hover {
-            border: 1px solid #515151;
             border-top:5px solid #515151;
             transform: scale(1.1);
             z-index: 2;
@@ -89,7 +76,7 @@
         .left-margin-col {
             margin-left:6%;
         }
-        .current-temperature, .max-temperature, .min-temperature {
+        .current-temperature, .data {
             margin: auto;
         }
         .now-title {
@@ -116,29 +103,51 @@
             text-align:center;
         }
         .morn-day-eve-night {
-            border: 1px solid #515151;
             margin:5px;
         }
         .current-city-row, .current-weather-row {
             width: 70%; 
             margin:auto;
         }
+        .current-weather-col {
+            margin-right: 20px;
+        }
+        .forecast-date-day-week-col {
+            text-align: center; 
+        }
+        .forecast-morn-day-eve-night-container {
+            margin:0px; 
+            max-width:100%; 
+            margin-top:40px;
+        }
+        .day-time {
+            text-align: center; 
+            border-bottom: 1px solid black;
+        }
+        .sumarry-row {
+            padding:0px; 
+            margin:15px;
+        }
+        .data-row {
+            margin: 10px;
+        }
+       
     
     </style>
     <!-- current weather -->
-    <div class="container current-weather-container">
+    <div class="container current-weather-container no-margin-padding">
         <div class="row current-city-row">
             <div class="col-4">
                 <p class="city_name">{{current_weather.name}}</p>
             </div>
         </div>
         <div class="row current-weather-row">
-            <div class="col-1" style="margin-right: 20px;" >
+            <div class="col-1 current-weather-col" >
                 <p class="now-title">Now:</p>
             </div>
             <div class="col-8 current-col">
-                <div class="row" >
-                    <div class="col-1 image-col">
+                <div class="row border-line" >
+                    <div class="col-1 no-margin-padding">
                         <img src="{{current_weather.icon }}" alt="Image">
                     </div>
                     <div class="col-1 temperature-col">
@@ -152,7 +161,7 @@
         </div>
     </div>  
 
-    <div class="container forecast-title-container">
+    <div class="container forecast-title-container no-margin-padding">
         <div class="row logo-row">
             <div class="col">
                 <p class="forecast-title">Forecast:</p>
@@ -162,19 +171,19 @@
     <div class="container forecast-container">
         <div class="row forecast-row">
             {% for daily in forecast %}
-            <div class="col forecast" onclick="updateDailyWeather({{ daily }})">
+            <div class="col forecast border-line" onclick="updateDailyWeather({{ daily }})">
                 <div class="row">
-                    <div class="col" style="text-align: center; ">
+                    <div class="col forecast-date-day-week-col">
                         <p class="forecast-date">{{daily.date_day}}</p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col" style="text-align: center; ">
+                    <div class="col forecast-date-day-week-col">
                         <p class="week-day">{{daily.week_day}}</p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-7 image-col">
+                    <div class="col-7 no-margin-padding">
                         <img src="{{ daily.icon }}" alt="Image">
                     </div>
                     <div class="col-5 night_and_day_temperature">
@@ -196,14 +205,14 @@
     </div>
     <div id="selected-daily-weather" class="d-none"></div>
 
-    <div class="container" style="margin:0px; max-width:100%; margin-top:40px;">
+    <div class="container forecast-morn-day-eve-night-container">
         {% for daily in forecast %}
             {% if daily.date_day == current_weather.date  %}
-                <div class="row justify-content-between" style="padding:0px; margin:15px;">
-                    <div class="col-3 morn-day-eve-night">
+                <div class="row justify-content-between sumarry-row">
+                    <div class="col-3 morn-day-eve-night border-line">
                         <div class="row">
                             <div class="col">
-                                <p style="text-align: center; border-bottom: 1px solid black;">Morning</p>
+                                <p class="day-time">Morning</p>
                             </div>
                         </div>
                         <div class="row">
@@ -217,10 +226,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col morn-day-eve-night">
+                    <div class="col morn-day-eve-night border-line">
                         <div class="row">
                             <div class="col">
-                                <p style="text-align: center; border-bottom: 1px solid black;">Day</p>
+                                <p class="day-time">Day</p>
                             </div>
                         </div>
                         <div class="row">
@@ -234,10 +243,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col morn-day-eve-night">
+                    <div class="col morn-day-eve-night border-line">
                         <div class="row">
                             <div class="col">
-                                <p style="text-align: center; border-bottom: 1px solid black;">Evening</p>
+                                <p class="day-time">Evening</p>
                             </div>
                         </div>
                         <div class="row">
@@ -251,10 +260,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col morn-day-eve-night">
+                    <div class="col morn-day-eve-night border-line">
                         <div class="row">
                             <div class="col">
-                                <p style="text-align: center; border-bottom: 1px solid black;">Night</p>
+                                <p class="day-time">Night</p>
                             </div>
                         </div>
                         <div class="row">
@@ -269,43 +278,43 @@
                         </div>
                     </div>
                 </div>
-                <div class="row" style="border:1px solid black; padding:0px; margin:20px;">
+                <div class="row border-line sumarry-row">
                     <div class="col-1 image-col">
                         <img id="icon" src="{{daily.icon}}" alt="Image">
                     </div>
                     <div class="col">
-                        <div class="row" style="margin: 10px;">
-                            <div class="col max-temperature-col">
-                                <p id="week_day-date" style="border-bottom: 1px solid black;" class="max-temperature">{{daily.week_day}}, {{daily.date_day}}</p>
+                        <div class="row data-row">
+                            <div class="col data-col ">
+                                <p id="week_day-date" style="border-bottom: 1px solid black;" class="data">{{daily.week_day}}, {{daily.date_day}}</p>
                             </div> 
                         </div>
-                        <div class="row" style="margin: 10px;">
-                            <div class="col max-temperature-col">
-                                <p id="min-max-temperature" class="max-temperature">Temperature from {{daily.temperature_min}}° to {{daily.temperature_max}}°</p>
+                        <div class="row data-row">
+                            <div class="col data-col">
+                                <p id="min-max-temperature" class="data">Temperature from {{daily.temperature_min}}° to {{daily.temperature_max}}°</p>
                             </div> 
                         </div>
-                        <div class="row" style="margin: 10px;">
-                            <div class="col-3 max-temperature-col">
-                                <p id="sunrise" class="max-temperature">Sunrise: {{daily.sunrise}}</p>
+                        <div class="row data-row">
+                            <div class="col-3 data-col">
+                                <p id="sunrise" class="data">Sunrise: {{daily.sunrise}}</p>
                             </div>
-                            <div class="col min-temperature-col">
-                                <p id="sunset" class="min-temperature">Sunset: {{daily.sunset}}</p>
+                            <div class="col data-col">
+                                <p id="sunset" class="data">Sunset: {{daily.sunset}}</p>
                             </div>    
                         </div>
-                        <div class="row" style="margin: 10px;">
-                            <div class="col-3 max-temperature-col">
-                                <p id="pressure" class="max-temperature">Pressure: {{daily.pressure}} mb</p>
+                        <div class="row data-row">
+                            <div class="col-3 data-col">
+                                <p id="pressure" class="data">Pressure: {{daily.pressure}} mb</p>
                             </div>
-                            <div class="col min-temperature-col">
-                                <p id="humidity" class="min-temperature">Humidity: {{daily.humidity}}%</p>
+                            <div class="col data-col">
+                                <p id="humidity" class="data">Humidity: {{daily.humidity}}%</p>
                             </div>    
                         </div>
-                        <div class="row" style="margin: 10px;">
-                            <div class="col-3 max-temperature-col">
-                                <p id="wind_speed" class="max-temperature">Wind: {{daily.wind_speed}} km/h</p>
+                        <div class="row data-row">
+                            <div class="col-3 data-col">
+                                <p id="wind_speed" class="data">Wind: {{daily.wind_speed}} km/h</p>
                             </div>
-                            <div class="col min-temperature-col">
-                                <p id="uvi" class="min-temperature">UV: {{daily.uvi}}</p>
+                            <div class="col data-col">
+                                <p id="uvi" class="data">UV: {{daily.uvi}}</p>
                             </div>    
                         </div>
                     </div>

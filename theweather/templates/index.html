@@ -14,6 +14,7 @@
             transition: all .2s ease-in-out;
             border-right: 1px solid #515151;
             border-left: 1px solid #515151;
+            margin:2%;
         }
         .city-col:hover {
             border-top: 5px solid #515151;
@@ -28,6 +29,7 @@
             text-decoration: none;
         }
         .index-container {
+            margin-top:2%;
             cursor: pointer;
             max-width: 100%; 
             margin:10px
@@ -36,13 +38,6 @@
             margin: 0px; 
             width:95%; 
             margin:auto;
-        }
-        .city-name-row {
-            padding: 0px; 
-            margin:0px;
-        }
-        .image-col {
-            padding:0px;
         }
         .temperature-col {
             padding:0px; 
@@ -60,16 +55,16 @@
         
 
     </style>
-    <div class="container index-container" style="margin-top:2%">
+    <div class="container index-container">
         <div class="row index-row justify-content-center" >
             {% for city in weather_data %}
-            <div class="col-3 city-col" style="margin:2%" >
+            <div class="col-3 city-col">
                 <a class="city-name" href="{% url 'city_detail' city.id %}">
-                    <div class="row city-name-row">
+                    <div class="row no-margin-padding">
                         <p>{{city.city}}</p>
                     </div>
                     <div class="row" >
-                        <div class="col-3 image-col">
+                        <div class="col-3 no-margin-padding">
                             <img src="{{ city.icon }}" alt="Image">
                         </div>
                         <div class="col-2 temperature-col" >

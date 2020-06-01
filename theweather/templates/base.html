@@ -13,32 +13,24 @@
     </head>
     <body style="background-color: white;">
         <style type="text/css">
-
-            #logo, #logo:hover  {
-                text-decoration: none;
-                font-size: 45px; 
-                letter-spacing: 13px
+            .no-margin-padding {
+                padding:0px; 
+                margin:0px;
             }
-            .search-button {
-                text-decoration: none;
-                background: #ffffff;
-                
-                height:34px;
-                transition: all .2s ease-in-out;
+            .border-line {
+                border: 1px solid #515151;
             }
-            .search-button:hover {
-                transform: scale(1.2);
+            body, a, a:hover {
+                font-family: 'Open Sans', sans-serif;
+                color: #515151;
             }
-            
-            #page-container {
+            .page-container {
                 position: relative;
                 min-height: 100vh;
             }
+            
             .logo-container {
-                background-color: white; 
-                height:80px; 
-                padding:0px; 
-                margin:0px; 
+                height:80px;  
                 max-width:100%;
                 margin-top:2%;
             }
@@ -49,6 +41,11 @@
             .logo-h {
                 padding-top: 10px;
             }
+            .logo, .logo:hover  {
+                text-decoration: none;
+                font-size: 45px; 
+                letter-spacing: 13px
+            }
             .search-col {
                 padding-top:20px; 
                 padding-left:0px; 
@@ -58,18 +55,23 @@
                 width: 80%; 
                 height:35px;
             }
-            a, a:hover, p, input {
-                font-family: 'Open Sans', sans-serif;
-                color: #515151;
-            }         
+            .search-button {
+                text-decoration: none;
+                background-color: white;
+                height:34px;
+                transition: all .2s ease-in-out;
+            }
+            .search-button:hover {
+                transform: scale(1.1);
+            }
         </style>
 
-        <div id="page-container" style="position: relative;"> 
-            <div class="container logo-container">
+        <div id="page-container"> 
+            <div class="container no-margin-padding logo-container ">
                 <div class="row logo-row">
                     <div class="col-4">
                         <h4 class="logo-h">
-                            <a id="logo" href="/">WEATHER</a>
+                            <a class="logo" href="/">WEATHER</a>
                         </h4>
                     </div>
                     <div class="col-8 search-col">
@@ -83,7 +85,6 @@
             <main>
                 {% block content %}
                 {% endblock content %} 
-                <!-- <img style="position: fixed; bottom:10px; right:10px;" src="{% static 'weather/cloud_1.png' %}"> -->
             </main>
         </div>
     </body>
