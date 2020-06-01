@@ -116,8 +116,6 @@ def city_detail(request, geoname_id):
 def search(request):
     api_key = os.environ['API_KEY']
     cityName = request.GET.get('cityName').capitalize()
-    print("TEST")
-    print(cityName)
     cityObject = City.objects.filter(name = cityName)
     weather_data = []
     for city in cityObject:
