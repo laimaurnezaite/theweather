@@ -9,6 +9,14 @@
             console.log(dailyWeather);
             elDailyWeather.classList.remove('d-none');
             /*document.getElementById('selected-daily-weather').innerHTML = JSON.stringify(dailyWeather.week_day);*/
+            document.getElementById('temperature_morn').innerHTML= dailyWeather.temperature_morn + "°";
+            document.getElementById('temperature_day').innerHTML= dailyWeather.temperature_day + "°";
+            document.getElementById('temperature_eve').innerHTML= dailyWeather.temperature_eve + "°";
+            document.getElementById('temperature_night').innerHTML= dailyWeather.temperature_night + "°";
+            document.getElementById('feels_like_morn').innerHTML= "Feels like " + dailyWeather.feels_like_morn  + "°";
+            document.getElementById('feels_like_day').innerHTML= "Feels like " + dailyWeather.feels_like_day  + "°";
+            document.getElementById('feels_like_eve').innerHTML= "Feels like " + dailyWeather.feels_like_eve  + "°";
+            document.getElementById('feels_like_night').innerHTML= "Feels like " + dailyWeather.feels_like_night  + "°";
             document.getElementById('week_day-date').innerHTML = dailyWeather.week_day + ", " + dailyWeather.date_day;
             document.getElementById('sunrise').innerHTML = "Sunrise: " + dailyWeather.sunrise;
             document.getElementById('sunset').innerHTML = "Sunset: " + dailyWeather.sunset;
@@ -220,12 +228,12 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <p>{{daily.temperature_morn}}°</p>
+                                <p id="temperature_morn">{{daily.temperature_morn}}°</p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
-                                <p>Feels like {{daily.feels_like_morn}}°</p>
+                                <p id="feels_like_morn">Feels like {{daily.feels_like_morn}}°</p>
                             </div>
                         </div>
                     </div>
@@ -237,12 +245,12 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <p>{{daily.temperature_day}}°</p>
+                                <p id="temperature_day">{{daily.temperature_day}}°</p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
-                                <p>Feels like {{daily.feels_like_day}}°</p>
+                                <p id="feels_like_day">Feels like {{daily.feels_like_day}}°</p>
                             </div>
                         </div>
                     </div>
@@ -254,12 +262,12 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <p>{{daily.temperature_eve}}°</p>
+                                <p id="temperature_eve">{{daily.temperature_eve}}°</p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
-                                <p>Feels like {{daily.feels_like_eve}}°</p>
+                                <p id="feels_like_eve">Feels like {{daily.feels_like_eve}}°</p>
                             </div>
                         </div>
                     </div>
@@ -271,12 +279,12 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <p>{{daily.temperature_night}}°</p>
+                                <p id="temperature_night">{{daily.temperature_night}}°</p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
-                                <p>Feels like {{daily.feels_like_night}}°</p>
+                                <p id="feels_like_night">Feels like {{daily.feels_like_night}}°</p>
                             </div>
                         </div>
                     </div>
